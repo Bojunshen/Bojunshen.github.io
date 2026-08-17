@@ -1,235 +1,629 @@
-<!-- Generated with Claude -->
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bo-Jun Shen — Business Analytics, Python, SQL, Machine Learning</title>
+<meta name="description" content="Bo-Jun (Esteban) Shen — Business Analytics, McGill MMA candidate. Python, SQL, machine learning, data pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0d12;
+    --ink-2:#12161d;
+    --ink-3:#181d26;
+    --text:#f2f4f6;
+    --dim:#9aa3ae;
+    --faint:#5c6570;
+    --line:rgba(255,255,255,0.09);
+    --line-strong:rgba(255,255,255,0.18);
+    --gold:#e3a857;
+    --blue:#5fa8d3;
+    --violet:#9b87f5;
+    --teal:#4fd1ae;
+    --coral:#e8637a;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0; background:var(--ink); color:var(--text);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{ font-family:'Inter', sans-serif; font-weight:600; letter-spacing:-0.01em; margin:0; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 40px; }
+  @media (max-width:640px){ .wrap{ padding:0 22px; } }
+  ::selection{ background:var(--gold); color:#0a0d12; }
+  .c-gold{ color:var(--gold) !important; }
+  .c-blue{ color:var(--blue) !important; }
+  .c-violet{ color:var(--violet) !important; }
+  .c-teal{ color:var(--teal) !important; }
+  .c-coral{ color:var(--coral) !important; }
+  .b-gold{ border-color:var(--gold) !important; }
+  .b-blue{ border-color:var(--blue) !important; }
+  .b-violet{ border-color:var(--violet) !important; }
+  .b-teal{ border-color:var(--teal) !important; }
+  .b-coral{ border-color:var(--coral) !important; }
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Business Analytics Portfolio</title>
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:none; }
 
-    <style>
-      /* ============================================================
-       BASIC STYLES — students can tweak colors/fonts here
-       ============================================================ */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  /* ---------- NAV ---------- */
+  header.nav{ position:fixed; top:0; left:0; right:0; z-index:80; }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:26px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  @media (max-width:640px){ .nav-inner{ padding:20px 22px; } }
+  .nav-mark{ font-family:'Inter', sans-serif; font-weight:700; font-size:17px; letter-spacing:.02em; text-decoration:none; display:flex; align-items:center; gap:9px; }
+  .nav-mark .dot{ width:6px; height:6px; background:var(--gold); border-radius:50%; display:inline-block; }
+  .nav-links{ display:flex; gap:32px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    text-decoration:none; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    font-family:'IBM Plex Mono', monospace; color:var(--dim);
+    padding-bottom:3px; border-bottom:1px solid transparent; transition:color .2s, border-color .2s;
+  }
+  .nav-links a:hover{ color:var(--text); border-color:var(--gold); }
+  @media (max-width:760px){ .nav-links{ display:none; } }
 
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        color: #222;
-        background: #f7f7f7;
-        line-height: 1.5;
-      }
+  /* ---------- HERO ---------- */
+  .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; padding-bottom:64px; }
+  .glow{ position:absolute; border-radius:50%; filter:blur(90px); z-index:0; opacity:.32; animation:drift 22s ease-in-out infinite; }
+  .glow-1{ width:520px; height:520px; background:var(--blue); top:-140px; left:-100px; animation-delay:0s; }
+  .glow-2{ width:460px; height:460px; background:var(--violet); top:10%; right:-120px; animation-delay:-7s; }
+  .glow-3{ width:420px; height:420px; background:var(--gold); bottom:-160px; left:28%; animation-delay:-14s; }
+  @keyframes drift{ 0%,100%{ transform:translate(0,0) scale(1); } 50%{ transform:translate(30px,-24px) scale(1.08); } }
+  #network-canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.6; }
+  .hero-photo{
+    position:absolute; top:0; right:0; bottom:0; width:56%; z-index:1;
+    -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 22%, black 46%);
+    mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 22%, black 46%);
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:58% 30%;
+    filter:grayscale(.15) contrast(1.04);
+  }
+  @media (max-width:900px){ .hero-photo{ width:100%; opacity:.24; -webkit-mask-image:linear-gradient(to bottom, transparent 0%, black 55%); mask-image:linear-gradient(to bottom, transparent 0%, black 55%); } }
+  .hero::after{
+    content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:radial-gradient(ellipse at 30% 20%, rgba(10,13,18,0) 0%, rgba(10,13,18,.35) 55%, rgba(10,13,18,.95) 100%);
+  }
+  .hero-inner{ position:relative; z-index:3; }
+  .hero-eyebrow{
+    font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
+    display:flex; align-items:center; gap:12px; margin-bottom:26px;
+  }
+  .hero-eyebrow::before{ content:""; width:30px; height:1px; background:var(--gold); display:inline-block; }
+  h1.hero-title{
+    font-size:clamp(36px, 6.4vw, 72px); line-height:1.05; letter-spacing:-0.02em;
+  }
+  h1.hero-title span{ display:block; }
+  .hero-tagline{
+    margin-top:22px; font-size:clamp(13.5px,1.5vw,15px); letter-spacing:.04em; color:var(--text);
+    display:flex; align-items:center; flex-wrap:wrap; gap:2px;
+  }
+  .hero-tagline .tag-dot{ color:var(--faint); margin:0 12px; }
+  .hero-sub{
+    margin-top:24px; font-size:clamp(16px,1.7vw,19px); color:var(--dim); max-width:600px; font-weight:400;
+  }
+  .hero-sub strong{ color:var(--text); font-weight:500; }
+  .scroll-cue{
+    margin-top:56px; display:flex; align-items:center; gap:10px; font-size:11px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--faint); font-family:'IBM Plex Mono', monospace;
+  }
+  .scroll-cue .bar{ width:1px; height:28px; background:linear-gradient(var(--gold), transparent); animation:scrollpulse 1.8s ease-in-out infinite; }
+  @keyframes scrollpulse{ 0%,100%{ opacity:.3; } 50%{ opacity:1; } }
 
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
+  /* ---------- MISSION STRIP + MARQUEE ---------- */
+  .mission{ padding:120px 0 0; }
+  .mission p{
+    font-size:clamp(20px,2.6vw,30px); color:var(--text); font-weight:400; line-height:1.45; max-width:900px;
+  }
+  .mission p strong{ color:var(--gold); font-weight:500; }
+  .marquee{ margin-top:64px; overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px 0; }
+  .marquee-track{ display:flex; width:max-content; gap:64px; animation:scroll-left 26s linear infinite; }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .marquee-track span{ font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); white-space:nowrap; }
+  .marquee-track span em{ font-style:normal; margin-right:10px; }
 
-      /* ---------- HEADER (photo + name + subheading) ---------- */
-      header {
-        text-align: center;
-        margin-bottom: 30px;
-      }
+  /* ---------- STAT COMPARISON ---------- */
+  .stat-block{ padding:130px 0; }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; }
+  @media (max-width:760px){ .stat-grid{ grid-template-columns:1fr; gap:48px; } }
+  .stat-cell{ border-left:2px solid var(--line); padding-left:24px; }
+  .stat-cell.b-blue{ border-left-color:var(--blue); }
+  .stat-cell.b-violet{ border-left-color:var(--violet); }
+  .stat-cell .stat-cap{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:18px; font-family:'IBM Plex Mono', monospace; }
+  .stat-cell .stat-big{ font-family:'Inter', sans-serif; font-weight:700; font-size:clamp(48px,8vw,104px); line-height:0.95; letter-spacing:-0.02em; }
+  .stat-cell .stat-desc{ margin-top:16px; font-size:14.5px; color:var(--dim); max-width:34ch; }
 
-      /* Empty space for photo — replace with your own <img> if you like */
-      .photo {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        background: #ddd;
-        border: 2px dashed #aaa;
-        margin: 0 auto 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #888;
-        font-size: 13px;
-      }
+  /* ---------- COUNTS GRID ---------- */
+  .counts-section{ padding:0 0 130px; }
+  .counts-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:56px; }
+  .counts-head p{ font-size:clamp(18px,2.2vw,24px); max-width:640px; color:var(--text); font-weight:400; }
+  .counts-head .cta-link{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); text-decoration:none; white-space:nowrap; border-bottom:1px solid var(--gold); padding-bottom:3px; }
+  .counts-grid{ display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+  @media (max-width:820px){ .counts-grid{ grid-template-columns:repeat(2,1fr); } }
+  .count-cell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); border-top:2px solid transparent; padding:34px 26px; transition:background .25s ease, border-color .25s ease; }
+  .count-cell:hover{ background:var(--ink-2); border-top-color:var(--line-strong); }
+  .count-num{ font-family:'Inter', sans-serif; font-weight:700; font-size:clamp(30px,3.4vw,42px); color:var(--text); }
+  .count-label{ font-size:13px; color:var(--dim); margin-top:8px; line-height:1.4; }
 
-      header h1 {
-        font-size: 28px;
-        margin-bottom: 6px;
-      } /* NAME */
-      header p {
-        font-size: 16px;
-        color: #555;
-      } /* EXPERIENCES */
+  /* ---------- PROJECTS ---------- */
+  .projects-section{ padding:20px 0 60px; }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px; gap:24px; flex-wrap:wrap; }
+  .section-eyebrow{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-family:'IBM Plex Mono', monospace; }
+  #projects .section-eyebrow{ color:var(--coral); }
+  #education .section-eyebrow{ color:var(--blue); }
+  #experience .section-eyebrow{ color:var(--teal); }
+  #skills .section-eyebrow{ color:var(--violet); }
+  h2.section-title{ font-size:clamp(28px,3.8vw,42px); margin-top:14px; }
+  .section-num{ font-size:13px; color:var(--faint); font-family:'IBM Plex Mono', monospace; }
 
-      /* ---------- TABS ---------- */
-      .tabs {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 24px;
-      }
+  .project{
+    display:grid; grid-template-columns:340px 1fr; gap:0; border-top:1px solid var(--line);
+  }
+  .project:last-child{ border-bottom:1px solid var(--line); }
+  @media (max-width:820px){ .project{ grid-template-columns:1fr; } }
+  .proj-media{
+    background:var(--ink-2); display:flex; align-items:center; justify-content:center; padding:44px;
+    border-right:1px solid var(--line); border-left:3px solid transparent; min-height:220px;
+  }
+  .proj-media.b-coral{ border-left-color:var(--coral); }
+  .proj-media.b-violet{ border-left-color:var(--violet); }
+  .proj-media.b-blue{ border-left-color:var(--blue); }
+  .proj-media.b-teal{ border-left-color:var(--teal); }
+  @media (max-width:820px){ .proj-media{ border-right:none; border-bottom:1px solid var(--line); } }
+  .proj-media svg{ width:100%; height:auto; max-height:160px; }
+  .proj-body{ padding:44px 44px 44px 48px; }
+  @media (max-width:640px){ .proj-body{ padding:32px 22px; } }
+  .proj-tag{ font-size:11.5px; text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px; font-family:'IBM Plex Mono', monospace; }
+  .proj-title{ font-family:'Inter', sans-serif; font-weight:600; font-size:23px; }
+  .proj-desc{ color:var(--dim); font-size:15px; margin-top:14px; max-width:64ch; }
+  .tool-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .pill{ font-family:'IBM Plex Mono', monospace; font-size:11px; padding:5px 11px; border:1px solid var(--line-strong); border-radius:20px; color:var(--dim); }
 
-      .tab-button {
-        padding: 10px 22px;
-        border: 1px solid #ccc;
-        background: #fff;
-        cursor: pointer;
-        font-size: 15px;
-        border-radius: 4px;
-      }
+  /* ---------- PROCESS ---------- */
+  .process-section{ padding:150px 0; }
+  .process-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); margin-top:56px; }
+  @media (max-width:820px){ .process-grid{ grid-template-columns:1fr; } }
+  .process-cell{ background:var(--ink); padding:44px 36px; border-top:2px solid transparent; }
+  .process-cell.b-blue{ border-top-color:var(--blue); }
+  .process-cell.b-violet{ border-top-color:var(--violet); }
+  .process-cell.b-gold{ border-top-color:var(--gold); }
+  .process-label{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.14em; color:var(--faint); margin-bottom:16px; }
+  .process-title{ font-family:'Inter', sans-serif; font-weight:600; font-size:24px; }
+  .process-desc{ margin-top:16px; font-size:14.5px; color:var(--dim); line-height:1.6; }
 
-      .tab-button.active {
-        background: #2c3e50;
-        color: #fff;
-        border-color: #2c3e50;
-      }
+  /* ---------- EDUCATION / EXPERIENCE ---------- */
+  .timeline-section{ padding:20px 0 130px; }
+  .edu-item{ display:grid; grid-template-columns:180px 1fr; gap:32px; padding:32px 0; border-top:1px solid var(--line); }
+  .edu-item:last-child{ border-bottom:1px solid var(--line); }
+  @media (max-width:640px){ .edu-item{ grid-template-columns:1fr; gap:10px; } }
+  .edu-date{ font-size:13px; color:var(--blue); font-family:'IBM Plex Mono', monospace; }
+  .edu-status{ display:inline-block; margin-top:10px; font-size:11px; padding:4px 10px; border-radius:20px; background:rgba(95,168,211,0.12); color:var(--blue); font-family:'IBM Plex Mono', monospace; letter-spacing:.03em; }
+  .edu-school{ font-family:'Inter', sans-serif; font-weight:600; font-size:20px; }
+  .edu-degree{ color:var(--dim); font-size:14.5px; margin-top:4px; }
+  .edu-detail{ font-size:14.5px; color:var(--faint); margin-top:12px; max-width:64ch; line-height:1.6; }
 
-      /* ---------- TAB CONTENT ---------- */
-      .tab-content {
-        display: none;
-      }
-      .tab-content.active {
-        display: block;
-      }
+  .exp-item{ padding:34px 0; border-top:1px solid var(--line); }
+  .exp-item:last-child{ border-bottom:1px solid var(--line); }
+  .exp-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; }
+  .exp-role{ font-family:'Inter', sans-serif; font-weight:600; font-size:20px; }
+  .exp-org{ color:var(--dim); font-size:14.5px; }
+  .exp-date{ font-size:12.5px; color:var(--faint); white-space:nowrap; font-family:'IBM Plex Mono', monospace; }
+  .exp-bullets{ margin:18px 0 0; padding-left:18px; color:var(--dim); font-size:14.5px; }
+  .exp-bullets li{ margin-bottom:9px; line-height:1.6; }
+  .exp-bullets li::marker{ color:var(--gold); }
 
-      .panel {
-        background: #fff;
-        border: 1px solid #eee;
-        border-radius: 6px;
-        padding: 24px;
-      }
+  /* ---------- SKILLS ---------- */
+  .skills-section{ padding:20px 0 140px; }
+  .skills-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:36px; margin-top:20px; }
+  @media (max-width:820px){ .skills-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-group-title{ font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.09em; margin-bottom:16px; }
+  .skill-list{ list-style:none; margin:0; padding:0; }
+  .skill-list li{ font-size:14.5px; color:var(--dim); padding:8px 0; border-top:1px solid var(--line); }
+  .skill-list li:first-child{ border-top:none; }
 
-      /* ---------- PROJECT CARDS (1 x 3 grid) ---------- */
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
+  /* ---------- CONTACT ---------- */
+  .contact-section{ padding:80px 0 60px; border-top:1px solid var(--line); }
+  .contact-head{ font-size:clamp(30px,5vw,56px); max-width:720px; }
+  .contact-sub{ margin-top:20px; color:var(--dim); font-size:16px; max-width:52ch; }
+  .contact-row{ margin-top:56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:26px; border-top:1px solid var(--line); padding-top:34px; }
+  .contact-email{ font-family:'Inter', sans-serif; font-weight:600; font-size:clamp(22px,3.4vw,32px); text-decoration:none; border-bottom:2px solid var(--gold); padding-bottom:6px; }
+  .contact-links{ display:flex; gap:26px; flex-wrap:wrap; }
+  .contact-links a{ font-size:13px; text-decoration:none; color:var(--dim); font-family:'IBM Plex Mono', monospace; border-bottom:1px solid var(--line-strong); padding-bottom:2px; transition:color .2s, border-color .2s; }
+  .contact-links a:hover{ color:var(--text); border-color:var(--gold); }
 
-      .card {
-        border: 1px solid #eee;
-        border-radius: 6px;
-        overflow: hidden;
-        background: #fff;
-      }
+  footer.credit{ padding:30px 0; text-align:center; font-size:11.5px; color:var(--faint); font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
 
-      /* Empty space for project photo */
-      .card-photo {
-        height: 120px;
-        background: #ddd;
-        border-bottom: 1px dashed #aaa;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #888;
-        font-size: 12px;
-      }
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top"><span class="dot"></span>BJS</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
 
-      .card-text {
-        padding: 14px;
-      }
-      .card-text h3 {
-        font-size: 16px;
-        margin-bottom: 6px;
-      }
-      .card-text p {
-        font-size: 14px;
-        color: #555;
-      }
+<main id="top">
 
-      /* ---------- MOBILE: stack cards vertically ---------- */
-      @media (max-width: 640px) {
-        .cards {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="glow glow-1" aria-hidden="true"></div>
+    <div class="glow glow-2" aria-hidden="true"></div>
+    <div class="glow glow-3" aria-hidden="true"></div>
+    <canvas id="network-canvas" aria-hidden="true" width="1194" height="1382"></canvas>
+    <div class="hero-photo" aria-hidden="true">
+      <img src="photo.jpg" alt="">
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-eyebrow">MMA Candidate — McGill University</div>
+      <h1 class="hero-title">
+        <span>Bo-Jun "Esteban" Shen</span>
+      </h1>
+      <div class="hero-tagline mono">Business Analytics <span class="tag-dot">·</span> Data Engineering <span class="tag-dot">·</span> Python <span class="tag-dot">·</span> SQL <span class="tag-dot">·</span> Machine Learning</div>
+      <p class="hero-sub">
+        Hands-on experience building Python/SQL data pipelines and machine learning models
+        that hold up against millions of real records — now sharpening the statistics and
+        ML side of the craft at McGill.
+      </p>
+      <div class="scroll-cue"><span class="bar"></span>Scroll</div>
+    </div>
+  </section>
 
-  <body>
-    <div class="container">
-      <!-- ============================================================
-         HEADER: photo, name, experiences
-         ============================================================ -->
-      <header>
-        <!-- Replace this div with <img src="your-photo.jpg" class="photo"> -->
-        <div class="photo">Photo</div>
+  <!-- MISSION + MARQUEE -->
+  <section class="mission" id="about">
+    <div class="wrap reveal in">
+      <p>
+        I'm a business analytics professional pursuing a <strong>Master of Management in Analytics
+        at McGill University</strong>, building on production data-engineering work and a business
+        degree from National Taiwan University. I work at the point where raw, messy, high-volume
+        data meets a decision someone actually has to make.
+      </p>
+    </div>
+    <div class="marquee reveal in" aria-hidden="true">
+      <div class="marquee-track" id="marquee-track"><span><em style="color:#e3a857">◆</em>Python</span><span><em style="color:#5fa8d3">◆</em>SQL</span><span><em style="color:#9b87f5">◆</em>Machine Learning</span><span><em style="color:#4fd1ae">◆</em>Tableau</span><span><em style="color:#e8637a">◆</em>Power BI</span><span><em style="color:#e3a857">◆</em>IBM Cognos</span><span><em style="color:#5fa8d3">◆</em>Statistical Testing</span><span><em style="color:#9b87f5">◆</em>ETL Automation</span><span><em style="color:#4fd1ae">◆</em>Data Engineering</span><span><em style="color:#e3a857">◆</em>Python</span><span><em style="color:#5fa8d3">◆</em>SQL</span><span><em style="color:#9b87f5">◆</em>Machine Learning</span><span><em style="color:#4fd1ae">◆</em>Tableau</span><span><em style="color:#e8637a">◆</em>Power BI</span><span><em style="color:#e3a857">◆</em>IBM Cognos</span><span><em style="color:#5fa8d3">◆</em>Statistical Testing</span><span><em style="color:#9b87f5">◆</em>ETL Automation</span><span><em style="color:#4fd1ae">◆</em>Data Engineering</span></div>
+    </div>
+  </section>
 
-        <h1>Your Name</h1>
-        <p>Business Analyst · SQL · Python · Tableau</p>
-      </header>
-
-      <!-- ============================================================
-         TABS
-         ============================================================ -->
-      <div class="tabs">
-        <button class="tab-button active" onclick="showTab('about')">
-          About Me
-        </button>
-        <button class="tab-button" onclick="showTab('projects')">
-          Projects
-        </button>
+  <!-- STAT COMPARISON -->
+  <section class="stat-block">
+    <div class="wrap stat-grid reveal in">
+      <div class="stat-cell b-blue">
+        <div class="stat-cap">Pipeline built at Dun &amp; Bradstreet Taiwan</div>
+        <div class="stat-big c-blue">2M+</div>
+        <div class="stat-desc">patent records acquired and validated by an automated Python crawling and inspection system.</div>
       </div>
-
-      <!-- ---------- TAB 1: ABOUT ME ---------- -->
-      <div id="about" class="tab-content active">
-        <div class="panel">
-          <p>
-            Write a short introduction about yourself here — your background,
-            skills, and what kind of business analytics role you're looking for.
-          </p>
-        </div>
+      <div class="stat-cell b-violet">
+        <div class="stat-cap">Independent classifier, NTU coursework</div>
+        <div class="stat-big c-violet">80%+</div>
+        <div class="stat-desc">accuracy predicting stock direction from news data, after preprocessing 7.5GB independently.</div>
       </div>
+    </div>
+  </section>
 
-      <!-- ---------- TAB 2: PROJECTS ---------- -->
-      <div id="projects" class="tab-content">
-        <div class="cards">
-          <!-- CARD 1 -->
-          <div class="card">
-            <div class="card-photo">Project Image</div>
-            <div class="card-text">
-              <h3>Project Title</h3>
-              <p>Short description of what you did and the tools you used.</p>
-            </div>
-          </div>
+  <!-- COUNTS -->
+  <section class="counts-section">
+    <div class="wrap">
+      <div class="counts-head reveal in">
+        <p>Applied analytics across statistics, machine learning, automation, and visualization — in coursework and in production.</p>
+        <a class="cta-link" href="#projects">All projects ↓</a>
+      </div>
+      <div class="counts-grid reveal in">
+        <div class="count-cell"><div class="count-num c-violet">2</div><div class="count-label">Machine learning &amp; classification projects</div></div>
+        <div class="count-cell"><div class="count-num c-blue">1</div><div class="count-label">Production data-engineering system, 2M+ records</div></div>
+        <div class="count-cell"><div class="count-num c-teal">1</div><div class="count-label">SQL + Tableau visualization pipeline</div></div>
+        <div class="count-cell"><div class="count-num c-gold">6</div><div class="count-label">Tools in active use — Python, SQL, Tableau, Power BI, Cognos, Excel</div></div>
+      </div>
+    </div>
+  </section>
 
-          <!-- CARD 2 -->
-          <div class="card">
-            <div class="card-photo">Project Image</div>
-            <div class="card-text">
-              <h3>Project Title</h3>
-              <p>Short description of what you did and the tools you used.</p>
-            </div>
-          </div>
-
-          <!-- CARD 3 -->
-          <div class="card">
-            <div class="card-photo">Project Image</div>
-            <div class="card-text">
-              <h3>Project Title</h3>
-              <p>Short description of what you did and the tools you used.</p>
-            </div>
-          </div>
+  <!-- PROJECTS -->
+  <section class="projects-section" id="projects">
+    <div class="wrap">
+      <div class="section-head reveal in">
+        <div>
+          <div class="section-eyebrow">Selected work</div>
+          <h2 class="section-title">Projects</h2>
         </div>
+        <span class="section-num">01 — 04</span>
       </div>
     </div>
 
-    <!-- ============================================================
-       SIMPLE TAB SWITCHING SCRIPT
-       ============================================================ -->
-    <script>
-      function showTab(id) {
-        // hide all tab contents
-        document.querySelectorAll(".tab-content").forEach(function (el) {
-          el.classList.remove("active");
-        });
-        // remove active state from all buttons
-        document.querySelectorAll(".tab-button").forEach(function (btn) {
-          btn.classList.remove("active");
-        });
-        // show the selected tab + highlight the clicked button
-        document.getElementById(id).classList.add("active");
-        event.target.classList.add("active");
+    <div class="wrap" style="padding:0;">
+      <div class="project reveal in">
+        <div class="proj-media b-coral" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><polyline points="5,80 20,60 35,68 50,30 65,45 80,20 95,35" fill="none" stroke="#e8637a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline><line x1="5" y1="90" x2="95" y2="90" stroke="#3a4048" stroke-width="1"></line></svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag c-coral">Self-initiated</div>
+          <div class="proj-title">Formula 1 — McLaren Driver Pace Analysis</div>
+          <div class="proj-desc">Applied design thinking to scope the core performance question facing the McLaren F1 team, then tested it statistically: ran t-tests on lap-pace data in Python and built visualizations comparing driver performance under varying race conditions.</div>
+          <div class="tool-pills"><span class="pill">Python</span><span class="pill">Statistical Testing</span><span class="pill">Data Viz</span><span class="pill">Design Thinking</span></div>
+        </div>
+      </div>
+
+      <div class="project reveal in">
+        <div class="proj-media b-violet" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><rect x="10" y="55" width="12" height="30" fill="#9b87f5"></rect><rect x="30" y="35" width="12" height="50" fill="#9b87f5"></rect><rect x="50" y="20" width="12" height="65" fill="#e8637a"></rect><rect x="70" y="45" width="12" height="40" fill="#9b87f5"></rect><line x1="5" y1="90" x2="95" y2="90" stroke="#3a4048" stroke-width="1"></line></svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag c-violet">Big Data &amp; Business Analysis — NTU</div>
+          <div class="proj-title">News-Driven Stock Price Classification</div>
+          <div class="proj-desc">Independently built a classification model predicting stock price direction from news data, reaching over 80% accuracy while preprocessing a 7.5GB dataset — end to end, from raw text to evaluated model.</div>
+          <div class="tool-pills"><span class="pill">Python</span><span class="pill">Classification</span><span class="pill">Big Data Preprocessing</span></div>
+        </div>
+      </div>
+
+      <div class="project reveal in">
+        <div class="proj-media b-blue" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><polyline points="5,70 20,55 35,60 50,35 65,40 80,15 95,25" fill="none" stroke="#5fa8d3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline><circle cx="50" cy="35" r="3.5" fill="#e3a857"></circle><line x1="5" y1="90" x2="95" y2="90" stroke="#3a4048" stroke-width="1"></line></svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag c-blue">Data Analysis &amp; ML with Python — NTU</div>
+          <div class="proj-title">Industry Impact on the Taiwan Weighted Index</div>
+          <div class="proj-desc">Collaborated on machine learning models analyzing how Taiwan's largest industry sector influences movement in the Taiwan stock market's weighted index (TAIEX).</div>
+          <div class="tool-pills"><span class="pill">Python</span><span class="pill">Machine Learning</span><span class="pill">Team Project</span></div>
+        </div>
+      </div>
+
+      <div class="project reveal in">
+        <div class="proj-media b-teal" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><rect x="8" y="10" width="84" height="55" rx="2" fill="none" stroke="#3a4048" stroke-width="1.5"></rect><rect x="16" y="45" width="10" height="15" fill="#4fd1ae"></rect><rect x="32" y="30" width="10" height="30" fill="#e8637a"></rect><rect x="48" y="38" width="10" height="22" fill="#4fd1ae"></rect><rect x="64" y="22" width="10" height="38" fill="#4fd1ae"></rect><line x1="5" y1="85" x2="95" y2="85" stroke="#3a4048" stroke-width="1"></line></svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag c-teal">Data Visualization &amp; Modern Data Science — NTU</div>
+          <div class="proj-title">2024 Taiwan Election Dashboard</div>
+          <div class="proj-desc">Visualized 2024 presidential and legislative election data in Tableau, with an automated pipeline connecting SQL to Python for scheduled data extraction.</div>
+          <div class="tool-pills"><span class="pill">Tableau</span><span class="pill">SQL</span><span class="pill">Python</span><span class="pill">Automation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section" id="process">
+    <div class="wrap">
+      <div class="section-head reveal in" style="margin-bottom:0;">
+        <div>
+          <div class="section-eyebrow">How I work</div>
+          <h2 class="section-title">Extract. Model. Decide.</h2>
+        </div>
+      </div>
+      <div class="process-grid reveal in">
+        <div class="process-cell b-blue">
+          <div class="process-label">STAGE 01</div>
+          <div class="process-title c-blue">Extract</div>
+          <div class="process-desc">Pull and validate data at volume — Python crawlers, SQL pipelines, and automated inspection systems built to survive production limits, not just a notebook.</div>
+        </div>
+        <div class="process-cell b-violet">
+          <div class="process-label">STAGE 02</div>
+          <div class="process-title c-violet">Model</div>
+          <div class="process-desc">Test the hypothesis properly — statistical testing, classification, and machine learning applied to the actual question, not the easiest one to answer.</div>
+        </div>
+        <div class="process-cell b-gold">
+          <div class="process-label">STAGE 03</div>
+          <div class="process-title c-gold">Decide</div>
+          <div class="process-desc">Put results in front of someone who has to act on them — Tableau and Power BI dashboards built for a business decision, not just a chart.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="timeline-section" id="education">
+    <div class="wrap">
+      <div class="section-head reveal in">
+        <div><div class="section-eyebrow">Academic background</div><h2 class="section-title">Education</h2></div>
+        <span class="section-num">01 — 03</span>
+      </div>
+
+      <div class="edu-item reveal in">
+        <div><div class="edu-date">Aug 2026 — exp. 2027</div><span class="edu-status">In progress</span></div>
+        <div>
+          <div class="edu-school">McGill University</div>
+          <div class="edu-degree">Master of Management in Analytics (MMA)</div>
+          <div class="edu-detail">Graduate program focused on statistics, machine learning, and applied analytics for business decision-making — building directly on prior work in data engineering and business analysis.</div>
+        </div>
+      </div>
+
+      <div class="edu-item reveal in">
+        <div><div class="edu-date">Sep 2020 — Jun 2024</div></div>
+        <div>
+          <div class="edu-school">National Taiwan University</div>
+          <div class="edu-degree">Bachelor of Business Administration, International Business — GPA 3.54/4.3 (3.96/4.3, final 60 credits)</div>
+          <div class="edu-detail">Relevant coursework: Marketing Research (statistics &amp; visualization of relationship value across demographics); Data Analysis &amp; Machine Learning with Python; Data Visualization &amp; Modern Data Science (Tableau + SQL/Python); Big Data &amp; Business Analysis (classification modeling on 7.5GB of news data).</div>
+        </div>
+      </div>
+
+      <div class="edu-item reveal in">
+        <div><div class="edu-date">Dec 2021 — Mar 2022</div></div>
+        <div>
+          <div class="edu-school">Queen's University — Smith School of Business</div>
+          <div class="edu-degree">Exchange, Commerce — GPA 3.71/4.3</div>
+          <div class="edu-detail">Business Decision Models (statistics, stock management, simulation in Excel); Coding Literacy for Managers (Excel, Power Apps, JavaScript, HTML); Knowledge Discovery &amp; Research on time pressure and investor decision-making.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="timeline-section" id="experience" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head reveal in">
+        <div><div class="section-eyebrow">Professional history</div><h2 class="section-title">Experience</h2></div>
+        <span class="section-num">01 — 02</span>
+      </div>
+
+      <div class="exp-item reveal in">
+        <div class="exp-head">
+          <div><div class="exp-role">Data Engineering Contractor</div><div class="exp-org">Dun &amp; Bradstreet Taiwan</div></div>
+          <div class="exp-date">Feb 2025 — Nov 2025</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Built a Python web-crawling and auto-inspection system that acquired and validated over 2 million patent records without exceeding working-time compliance limits.</li>
+          <li>Automated extraction, validation, and computation of annual-report data across 1,800+ companies (12 worksheets each) in partnership with a data-vendor team.</li>
+          <li>Connected SQL and Python to validate Allianz Trade data, coordinating API integration with engineering partners.</li>
+          <li>Shipped reusable Python automation modules that reduced manual processing time for the analyst team.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal in">
+        <div class="exp-head">
+          <div><div class="exp-role">Intern</div><div class="exp-org">ROC-USA Business Council</div></div>
+          <div class="exp-date">Apr 2023 — Jul 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Researched biotech policy and business environments in Maryland to brief delegation leadership.</li>
+          <li>Presented findings directly to US delegates and senators; contributed to persuading 4 additional states to open Taiwan offices.</li>
+          <li>Organized 4 expositions introducing US business investment opportunities.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div><div class="section-eyebrow">Toolkit</div><h2 class="section-title">Skills</h2></div>
+      </div>
+      <div class="skills-grid reveal">
+        <div>
+          <div class="skill-group-title c-blue">Languages &amp; Query</div>
+          <ul class="skill-list"><li>Python</li><li>SQL</li><li>JavaScript / HTML</li><li>Excel (advanced) / Power Apps</li></ul>
+        </div>
+        <div>
+          <div class="skill-group-title c-violet">Analytics &amp; ML</div>
+          <ul class="skill-list"><li>Classification models</li><li>Statistical testing (t-tests)</li><li>Data engineering &amp; ETL automation</li><li>Big-data preprocessing</li></ul>
+        </div>
+        <div>
+          <div class="skill-group-title c-teal">Visualization</div>
+          <ul class="skill-list"><li>Tableau</li><li>Power BI</li><li>IBM Cognos Analytics</li></ul>
+        </div>
+        <div>
+          <div class="skill-group-title c-gold">Certifications &amp; Languages</div>
+          <ul class="skill-list"><li>IBM Data Analyst Certificate</li><li>English — IELTS 7.5</li><li>French — DELF B1</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="wrap reveal">
+      <h2 class="contact-head">Let's talk analytics.</h2>
+      <p class="contact-sub">Open to internships and full-time roles in business analytics and data science — reach out directly.</p>
+      <div class="contact-row">
+        <a class="contact-email" href="mailto:jasonshen1272@gmail.com">jasonshen1272@gmail.com</a>
+        <div class="contact-links">
+          <a href="tel:+886928181790">+886 928 181 790</a>
+          <a href="https://www.linkedin.com/in/bo-jun-esteban-shen-bb5089264/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/Bojunshen" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="credit">Bo-Jun Shen · Montréal, QC · McGill MMA · Business Analytics &amp; Data Science</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:0.12 });
+    revealEls.forEach(el=>io.observe(el));
+  } else {
+    revealEls.forEach(el=>el.classList.add('in'));
+  }
+
+  // Marquee content
+  const tools = ['Python','SQL','Machine Learning','Tableau','Power BI','IBM Cognos','Statistical Testing','ETL Automation','Data Engineering'];
+  const swatches = ['#e3a857','#5fa8d3','#9b87f5','#4fd1ae','#e8637a'];
+  const track = document.getElementById('marquee-track');
+  if(track){
+    const build = ()=> tools.map((t,i)=>`<span><em style="color:${swatches[i%swatches.length]}">◆</em>${t}</span>`).join('');
+    track.innerHTML = build() + build();
+  }
+
+  // Ambient network canvas
+  const canvas = document.getElementById('network-canvas');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(canvas && !reduceMotion){
+    const ctx = canvas.getContext('2d');
+    let w, h, nodes;
+    const COLORS = ['#e3a857', '#5fa8d3', '#9b87f5', '#4fd1ae', '#e8637a'];
+
+    function resize(){
+      w = canvas.width = canvas.offsetWidth * devicePixelRatio;
+      h = canvas.height = canvas.offsetHeight * devicePixelRatio;
+    }
+    function initNodes(){
+      const count = Math.max(28, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 32000));
+      nodes = Array.from({length:count}, ()=>({
+        x: Math.random()*w, y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.25*devicePixelRatio,
+        vy: (Math.random()-0.5)*0.25*devicePixelRatio,
+        r: (Math.random()*1.6+0.8)*devicePixelRatio,
+        c: COLORS[Math.floor(Math.random()*COLORS.length)]
+      }));
+    }
+    function step(){
+      ctx.clearRect(0,0,w,h);
+      const maxDist = 150*devicePixelRatio;
+      for(let i=0;i<nodes.length;i++){
+        const n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if(n.x<0||n.x>w) n.vx*=-1;
+        if(n.y<0||n.y>h) n.vy*=-1;
+        for(let j=i+1;j<nodes.length;j++){
+          const m = nodes[j];
+          const dx=n.x-m.x, dy=n.y-m.y;
+          const dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist<maxDist){
+            ctx.strokeStyle = `rgba(154,163,174,${(1-dist/maxDist)*0.18})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
+          }
+        }
       }
-    </script>
-  </body>
-</html>
+      nodes.forEach(n=>{
+        ctx.beginPath();
+        ctx.fillStyle = n.c;
+        ctx.globalAlpha = 0.75;
+        ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+      requestAnimationFrame(step);
+    }
+    function boot(){ resize(); initNodes(); step(); }
+    boot();
+    window.addEventListener('resize', ()=>{ resize(); initNodes(); });
+  }
+</script>
+
+
+
+</body></html>
