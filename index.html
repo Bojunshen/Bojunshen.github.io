@@ -191,6 +191,12 @@
   .proj-title{ font-family:'Inter', sans-serif; font-weight:600; font-size:23px; }
   .proj-desc{ color:var(--dim); font-size:15px; margin-top:14px; max-width:64ch; }
   .tool-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; }
+  .proj-link{
+    display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; text-decoration:none; color:var(--text); border-bottom:1px solid var(--line-strong);
+    padding-bottom:3px; transition:color .2s, border-color .2s;
+  }
+  .proj-link:hover{ color:var(--gold); border-color:var(--gold); }
   .pill{ font-family:'IBM Plex Mono', monospace; font-size:11px; padding:5px 11px; border:1px solid var(--line-strong); border-radius:20px; color:var(--dim); }
 
   /* ---------- PROCESS ---------- */
@@ -359,6 +365,7 @@
           <div class="proj-title">Formula 1 — McLaren Driver Pace Analysis</div>
           <div class="proj-desc">Applied design thinking to scope the core performance question facing the McLaren F1 team, then tested it statistically: ran t-tests on lap-pace data in Python and built visualizations comparing driver performance under varying race conditions.</div>
           <div class="tool-pills"><span class="pill">Python</span><span class="pill">Statistical Testing</span><span class="pill">Data Viz</span><span class="pill">Design Thinking</span></div>
+          <a class="proj-link" href="https://github.com/Bojunshen/F1-team-McLaren-Drivers-comparison" target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
       </div>
 
@@ -371,6 +378,7 @@
           <div class="proj-title">News-Driven Stock Price Classification</div>
           <div class="proj-desc">Independently built a classification model predicting stock price direction from news data, reaching over 80% accuracy while preprocessing a 7.5GB dataset — end to end, from raw text to evaluated model.</div>
           <div class="tool-pills"><span class="pill">Python</span><span class="pill">Classification</span><span class="pill">Big Data Preprocessing</span></div>
+          <a class="proj-link" href="https://github.com/Bojunshen/BDA_News-Driven-Stock-Price-Classification" target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
       </div>
 
@@ -383,6 +391,7 @@
           <div class="proj-title">Industry Impact on the Taiwan Weighted Index</div>
           <div class="proj-desc">Collaborated on machine learning models analyzing how Taiwan's largest industry sector influences movement in the Taiwan stock market's weighted index (TAIEX).</div>
           <div class="tool-pills"><span class="pill">Python</span><span class="pill">Machine Learning</span><span class="pill">Team Project</span></div>
+          <a class="proj-link" href="https://github.com/Bojunshen/Industry-Impact-on-the-Taiwan-Weighted-Index" target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
       </div>
 
@@ -485,6 +494,7 @@
           <li>Connected SQL and Python to validate Allianz Trade data, coordinating API integration with engineering partners.</li>
           <li>Shipped reusable Python automation modules that reduced manual processing time for the analyst team.</li>
         </ul>
+        <a class="proj-link" href="https://github.com/Bojunshen/Dun-Bradstreet" target="_blank" rel="noopener">View on GitHub ↗</a>
       </div>
 
       <div class="exp-item reveal">
@@ -531,7 +541,6 @@
   <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="wrap reveal">
-      <h2 class="contact-head">Let's talk analytics.</h2>
       <p class="contact-sub">Open to internships and full-time roles in business analytics and data science — reach out directly.</p>
       <div class="contact-row">
         <a class="contact-email" href="mailto:jasonshen1272@gmail.com">jasonshen1272@gmail.com</a>
